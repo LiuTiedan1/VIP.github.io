@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="divport" content="width=device-width, initial-scale=1.0">
+    <title>m3u8</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/hls.js/8.0.0-beta.3/hls.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        body {
+            background-color: #DCDCDC;
+        }
+
+        .input-div {
+            display: none;
+        }
+
+        .video-div {
+            width: 98%;
+            background-color: white;
+            padding: 1%;
+            border-radius: 10px;
+        }
+
+        .video-div video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .input-title {
+            width: 100%;
+            padding: 1%;
+            margin-top: 20px;
+        }
+
+        .input-title input {
+            width: 90%;
+            height: 30px;
+            border-radius: 10px;
+            padding-left: 1%;
+        }
+
+        .input-title button {
+            width: 8%;
+            height: 30px;
+            background-color: #ffb8c6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-div">
+        <video id="player" controls=""></video>
+    </div>
+
+    <div class="input-title">
+        <input type="text" id="myInput">
+        <button onclick="logInputValue()">开始解析</button>
+    </div>
+    <div class="input-div">
+        <form method="post" id="str-post">
+            <input type="text" value="" id="inputtitle" name="url" placeholder="请输入m3u8播放地址" autocomplete="off">
+            <button id="buttontitle" type="submit">播放</button>
+        </form>
+    </div>
+    <script>
+        function logInputValue() {
+            const inputValue = document.getElementById('myInput').value;
+            var marginurl = 'http://39.101.67.108/?name=' + inputValue;
+            fetch(marginurl)
+                .then(response => response.json())
+                .then(data => {
+                    const playUrl = data.play_url;
+                    console.log(playUrl);
+                    var name = document.getElementById("inputtitle");
+                    name.value = playUrl;
+                    document.getElementById('buttontitle').click();
+                })
+        }
+
+
+        function playM3u8(url) {
+            if (Hls.isSupported()) {
+                var video = document.getElementById('player');
+                video.volume = 1.0;
+                var hls = new Hls();
+                var m3u8Url = decodeURIComponent(url)
+                hls.loadSource(m3u8Url);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    video.play();
+                });
+            }
+        }
+        $("#str-post").submit(function () {
+            $("html,body").animate({
+                scrollTop: $(".input-div").offset().top - 20
+            }, 200);
+            playM3u8($("#str-post").serializeArray()[0].value);
+            return false;
+        })
+    </script>
+</body>
+
+</html>
