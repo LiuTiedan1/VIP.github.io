@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>武动乾坤 第4季</title>
+</head>
+
+<body>
+    <div class="container">
+        <iframe name="mainFrame" frameborder="0" border="0" marginwidth="0" marginheight="0" allowfullscreen="true"
+            scrolling="no" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
+            src="https://ts1.cn.mm.bing.net/th/id/R-C.987f582c510be58755c4933cda68d525?rik=C0D21hJDYvXosw&riu=http%3a%2f%2fimg.pconline.com.cn%2fimages%2fupload%2fupc%2ftx%2fwallpaper%2f1305%2f16%2fc4%2f20990657_1368686545122.jpg&ehk=netN2qzcCVS4ALUQfDOwxAwFcy41oxC%2b0xTFvOYy5ds%3d&risl=&pid=ImgRaw&r=0"
+            frameborder="0" allowfullscreen></iframe>
+        <div class="left">
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/v0047hkw52k.html">第1集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/s004786zq8p.html">第2集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/g0047c7edwl.html">第3集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/g00470sxc16.html">第4集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/n0047s4w681.html">第5集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/z0047xtuwrk.html">第6集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/n00475s20gp.html">第7集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/v0047dczd0x.html">第8集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/u00475gwo8f.html">第9集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/d00479ljoup.html">第10集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/r0047s1fymb.html">第11集</button>
+
+            <button class="btn" data-url="https://v.qq.com/x/cover/mzc00200epkfe19/o0047gp4goh.html">第12集</button> 
+        </div>
+    </div>
+</body>
+<script>
+    const btns = document.querySelectorAll(".btn");
+    const iframe = document.querySelector("iframe");
+
+    btns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            iframe.src = "https://jx.jsonplayer.com/player/?url=" + btn.dataset.url;
+        });
+    });
+</script>
+
+</html>
